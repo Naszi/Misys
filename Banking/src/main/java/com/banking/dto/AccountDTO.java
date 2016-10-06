@@ -11,6 +11,11 @@ public class AccountDTO {
 	public AccountDTO() {
 	}
 
+	public AccountDTO(double balance, int accountNumber) {
+		this.balance = balance;
+		this.accountNumber = accountNumber;
+	}
+
 	public AccountDTO(String accountId, int accountNumber, double balance, String currency, String customerId) {
 		this.accountId = accountId;
 		this.accountNumber = accountNumber;
@@ -57,6 +62,14 @@ public class AccountDTO {
 
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
+	}
+
+	public double withDrawMoney(double amount) {
+		return this.balance = this.balance - amount;
+	}
+
+	public double addMonney(double amount) {
+		return this.balance = this.balance + amount;
 	}
 
 }

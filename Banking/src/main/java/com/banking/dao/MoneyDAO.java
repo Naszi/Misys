@@ -15,7 +15,7 @@ public class MoneyDAO implements IMoneyDAO<MoneyDTO> {
 	private static final String SQL_NUMBER_OF_ACCOUNT = "SELECT COUNT(*) FROM ACCOUNT";
 	private static final String SQL_MONEY_IN_BANK = "SELECT SUM(BALANCE) FROM ACCOUNT";
 
-	private static final DatabaseConnection connection = DatabaseConnection.namelyState();
+	private static final DatabaseConnection connection = DatabaseConnection.customerConnection();
 
 	@Override
 	public boolean withDrawMoney(MoneyDTO c, double amount) {

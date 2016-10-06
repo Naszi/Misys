@@ -16,7 +16,7 @@ public class AllCustomerDAO implements IAllCustomerDAO<AllCustomerDTO> {
 			+ " ACCOUNT.ACCOUNTNUMBER, ACCOUNT.BALANCE, ACCOUNT.CURRENCY FROM CUSTOMER"
 			+ " INNER JOIN ACCOUNT ON CUSTOMER.CUSTOMERID=ACCOUNT.CUSTOMERID";
 
-	private static final DatabaseConnection connection = DatabaseConnection.namelyState();
+	private static final DatabaseConnection connection = DatabaseConnection.customerConnection();
 
 	@Override
 	public List<AllCustomerDTO> readAll() {

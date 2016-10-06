@@ -15,7 +15,7 @@ public class CustomerDAO implements ICustomerDAO<CustomerDTO> {
 	private static final String SQL_UPDATE = "UPDATE customer SET name = ?, address = ?, birthday = ? WHERE customerId = ?";
 	private static final String SQL_READ = "SELECT * FROM customer WHERE customerId = ?";
 
-	private static final DatabaseConnection connection = DatabaseConnection.namelyState();
+	private static final DatabaseConnection connection = DatabaseConnection.customerConnection();
 
 	@Override
 	public boolean create(CustomerDTO c) {

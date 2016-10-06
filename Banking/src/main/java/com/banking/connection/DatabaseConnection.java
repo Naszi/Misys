@@ -26,7 +26,7 @@ public class DatabaseConnection {
 		}
 	}
 
-	public synchronized static DatabaseConnection namelyState() {
+	public synchronized static DatabaseConnection customerConnection() {
 
 		if (instance == null) {
 			instance = new DatabaseConnection();

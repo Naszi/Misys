@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banking.dao.AccountDAO;
 import com.banking.dao.AllCustomerDAO;
+import com.banking.dao.BankStatisticsDAO;
 import com.banking.dao.CustomerDAO;
-import com.banking.dao.MoneyDAO;
 import com.banking.dto.AccountDTO;
 import com.banking.dto.AllCustomerDTO;
+import com.banking.dto.BankStatisticsDTO;
 import com.banking.dto.CustomerDTO;
-import com.banking.dto.MoneyDTO;
 
 @Controller
 public class MainController {
@@ -27,10 +27,10 @@ public class MainController {
 	private AllCustomerDAO allCustomerDAO = new AllCustomerDAO();
 	private CustomerDAO customerDAO = new CustomerDAO();
 	private AccountDAO accountDAO = new AccountDAO();
-	private MoneyDAO moneyDAO = new MoneyDAO();
-	
+	private BankStatisticsDAO bankStatisticsDAO = new BankStatisticsDAO();
+
 	// Managed Customers
-	
+
 	@RequestMapping(value = "/listAllCustomer")
 	public ResponseEntity<List<AllCustomerDTO>> listAllCustomer() {
 
@@ -82,20 +82,30 @@ public class MainController {
 
 		return new ResponseEntity<CustomerDTO>(HttpStatus.OK);
 	}
-	
+
 	// Managed Money
-	
-//	@PostMapping(value="/withDrawMoney/")
-//	public ResponseEntity<MoneyDTO> withDrawMoney() {
-//		return false;
-//	}
-//	
+
+	// @PostMapping(value="/withDrawMoney/")
+	// public ResponseEntity<MoneyDTO> withDrawMoney() {
+	// return false;
+	// }
+	//
 	// Bank Statistics
-	
-//	@GetMapping(value = "/numberOfCustomers")
-//	public ResponseEntity<MoneyDTO> numberOfCustomers() {
-//		
-//		return ResponseEntity<MoneyDTO>(moneyDAO.numberOfCustomers(), HttpStatus.OK);
-//	}
+
+	 @RequestMapping(value = "/numberOfCustomers")
+	 public ResponseEntity<BankStatisticsDTO> numberOfCustomers() {
+		 
+		 bankStatisticsDAO.numberOfCustomers();
+		 
+	 return new ResponseEntity<BankStatisticsDTO>(HttpStatus.OK);
+	 }
+	 
+	 @RequestMapping(value = "/numberOfAccount")
+	 public ResponseEntity<BankStatisticsDTO> numberOfaccount() {
+		 
+		 bankStatisticsDAO.numberOfAccount();
+		 
+	 return new ResponseEntity<BankStatisticsDTO>(HttpStatus.OK);
+	 }
 
 }
