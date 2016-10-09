@@ -16,7 +16,7 @@ public class BankStatisticsDAO implements IBankingStatisticDAO<BankStatisticsDTO
 
 	private static final DatabaseConnection connection = DatabaseConnection.customerConnection();
 
-	private BankStatisticsDTO bankStatisticDTO = null;
+//	private BankStatisticsDTO bankStatisticDTO = null;
 
 	@Override
 	public BankStatisticsDTO numberOfCustomers() {
@@ -30,9 +30,9 @@ public class BankStatisticsDAO implements IBankingStatisticDAO<BankStatisticsDTO
 			set = statement.executeQuery();
 			if (set.next()) {
 				customers = set.getInt(1);
-				bankStatisticDTO = new BankStatisticsDTO(set.getInt(customers));
+				bankStatisticsDTO = new BankStatisticsDTO(customers);
 			}
-			return bankStatisticDTO;
+		
 		} catch (
 
 		SQLException e) {
@@ -44,33 +44,45 @@ public class BankStatisticsDAO implements IBankingStatisticDAO<BankStatisticsDTO
 		return bankStatisticsDTO;
 	}
 
-	@Override
-	public int numberOfAccount() {
-		PreparedStatement statement;
-		ResultSet set;
-		
-		int customer;
-		
-		try {
-			statement = connection.getConnection().prepareStatement(SQL_NUMBER_OF_ACCOUNT);
-			set = statement.executeQuery();
-			if (set.next()) {
-				customer = set.getInt(1);
-				bankStatisticDTO.setNumberOfAccount(customer);;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			connection.closeConnection();
-		}
-		return bankStatisticDTO.getNumberOfAccount();		
-	}
+@Override
+public int numberOfAccount() {
+	// TODO Auto-generated method stub
+	return 0;
+}
 
-	@Override
-	public int moneyInBank() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+@Override
+public int moneyInBank() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+//	@Override
+//	public int numberOfAccount() {
+//		PreparedStatement statement;
+//		ResultSet set;
+//		
+//		int customer;
+//		
+//		try {
+//			statement = connection.getConnection().prepareStatement(SQL_NUMBER_OF_ACCOUNT);
+//			set = statement.executeQuery();
+//			if (set.next()) {
+//				customer = set.getInt(1);
+//				bankStatisticDTO.setNumberOfAccount(customer);;
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			connection.closeConnection();
+//		}
+//		return bankStatisticDTO.getNumberOfAccount();		
+//	}
+//
+//	@Override
+//	public int moneyInBank() {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 }

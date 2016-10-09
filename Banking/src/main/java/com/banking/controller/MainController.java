@@ -2,6 +2,8 @@ package com.banking.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.banking.dao.AccountDAO;
 import com.banking.dao.AllCustomerDAO;
@@ -85,27 +88,27 @@ public class MainController {
 
 	// Managed Money
 
-	// @PostMapping(value="/withDrawMoney/")
-	// public ResponseEntity<MoneyDTO> withDrawMoney() {
-	// return false;
-	// }
+	@RequestMapping(value="/withDrawMoney")
+	public ResponseEntity<Object> withDrawMoney(HttpServletRequest request) {
+		System.out.println("accountnr: " + request.getParameter("accountnr") );
+		System.out.println("amount: " + request.getParameter("amount"));
+	return new ResponseEntity<Object>(HttpStatus.OK);
+	}
 	//
 	// Bank Statistics
 
-	 @RequestMapping(value = "/numberOfCustomers")
-	 public ResponseEntity<BankStatisticsDTO> numberOfCustomers() {
-		 
-		 bankStatisticsDAO.numberOfCustomers();
-		 
-	 return new ResponseEntity<BankStatisticsDTO>(HttpStatus.OK);
-	 }
-	 
-	 @RequestMapping(value = "/numberOfAccount")
-	 public ResponseEntity<BankStatisticsDTO> numberOfaccount() {
-		 
-		 bankStatisticsDAO.numberOfAccount();
-		 
-	 return new ResponseEntity<BankStatisticsDTO>(HttpStatus.OK);
-	 }
+	@RequestMapping(value = "/numberOfCustomers")
+	public ResponseEntity<BankStatisticsDTO> numberOfCustomers() {
+
+		return new ResponseEntity<BankStatisticsDTO>(bankStatisticsDAO.numberOfCustomers(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/numberOfAccount")
+	public ResponseEntity<BankStatisticsDTO> numberOfaccount() {
+
+		bankStatisticsDAO.numberOfAccount();
+
+		return new ResponseEntity<BankStatisticsDTO>(HttpStatus.OK);
+	}
 
 }
